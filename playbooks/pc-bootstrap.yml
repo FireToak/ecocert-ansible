@@ -1,0 +1,17 @@
+# ---
+# Type           : Playbook
+# Description    : Première configuration des postes clients : configuration de l'authentification de Ansible, vérification de la complexité des mots de passe, installation des mises à jour et des applications.
+# ---
+---
+
+- name: PC Bootstrap
+  hosts: pc
+  become: true
+
+  vars_files:
+    - ../secrets/pc.yml
+
+  roles:
+    - role: pc-authentification
+    - role: pc-password-check
+    - role: pc-update-apps

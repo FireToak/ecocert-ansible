@@ -1,0 +1,15 @@
+# ---
+# Type           : Playbook
+# Description    : Mettre à jour et installer les paquets défini dans les variables.
+# ---
+---
+
+- name: PC Update apps
+  hosts: pc
+  become: true
+
+  vars_files:
+    - ../secrets/pc.yml
+
+  roles:
+    - role: pc-update-apps

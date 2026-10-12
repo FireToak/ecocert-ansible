@@ -1,0 +1,7 @@
+# ---
+# Type        : Tasks
+# Rôle        : pc-authentification
+# Description : Mise en place de l'authentification par paire de clé SSH.
+# ---
+---
+
