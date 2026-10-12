@@ -1,0 +1,10 @@
+# ---
+# Type        : Handlers
+# Rôle        : pc-authentification
+# Description : Redémarrer le service SSH.
+# ---
+---
+- name: Restart SSH
+  ansible.builtin.service:
+    name: ssh
+    state: restarted

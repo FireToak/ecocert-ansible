@@ -1,7 +1,15 @@
 # ---
 # Type        : Tasks
-# Rôle        : pc-password-check
-# Description : Vérification de la conformité des mots de passe.
+# Rôle        : pc-update-apps
+# Description : Mise à jour et installation des paquets.
 # ---
 ---
+- name: Mettre à jour le cache et le système
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
 
+- name: Installer les paquets
+  ansible.builtin.apt:
+    name: "{{ pc_paquets }}"
+    state: present

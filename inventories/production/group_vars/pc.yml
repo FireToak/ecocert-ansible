@@ -1,0 +1,12 @@
+# ---
+# Type           : Vars
+# Description    : Variables pour le groupe pc.
+# ---
+---
+
+pc_paquets:
+  - git
+  - curl
+  - vim
+  - btop
+  - etckeeper

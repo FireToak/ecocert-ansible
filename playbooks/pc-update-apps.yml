@@ -8,8 +8,8 @@
   hosts: pc
   become: true
 
-  vars_files:
-    - ../secrets/pc.yml
+  # vars_files:
+  #   - ../secrets/pc.yml
 
   roles:
     - role: pc-update-apps

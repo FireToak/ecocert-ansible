@@ -3,3 +3,13 @@
 # Description    : Variables de production pour les rôles
 # ---
 ---
+
+# ---
+# SSH
+# !!! Ne pas modifier !!!
+# ---
+
+ansible_ssh_user: svc-ansible
+ansible_ssh_pub_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIgURtK+Nz4gn6JadBPpQqdxqI2tsouieVi74sWO2pkv svc-ansible@ecocert4.fr"
+ansible_ssh_private_key_file: ./id_ed25519_svc-ansible
+# ansible_ssh_private_key_file: ~/.ssh/id_ed25519_svc-ansible

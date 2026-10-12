@@ -8,8 +8,12 @@
   hosts: pc
   become: true
 
-  vars_files:
-    - ../secrets/pc.yml
+  # vars_files:
+  #   - ../secrets/pc.yml
+
+  vars:
+    ansible_ssh_user: debian
+    ansible_ssh_password: "Azertyuiop123456*"
 
   roles:
     - role: pc-authentification

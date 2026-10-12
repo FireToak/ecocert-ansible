@@ -1,7 +1,34 @@
 # ---
 # Type        : Tasks
 # Rôle        : pc-authentification
-# Description : Mise en place de l'authentification par paire de clé SSH.
+# Description : Création de l'utilisateur svc-ansible, ajout au sudo et sécurisation SSH.
 # ---
 ---
+- name: Créer l'utilisateur svc-ansible
+  ansible.builtin.user:
+    name: svc-ansible
+    state: present
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+    create_home: yes
 
+- name: Autoriser sudo sans mot de passe pour svc-ansible
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/svc-ansible
+    content: "svc-ansible ALL=(ALL) NOPASSWD:ALL"
+    mode: '0440'
+    validate: /usr/sbin/visudo -csf %s
+
+- name: Déployer la clé publique SSH
+  ansible.posix.authorized_key:
+    user: svc-ansible
+    state: present
+    key: "{{ ansible_ssh_pub_key }}"
+
+- name: Désactiver l'authentification SSH par mot de passe (via surcharge)
+  ansible.builtin.copy:
+    dest: /etc/ssh/sshd_config.d/99-disable-passwords.conf
+    content: "PasswordAuthentication no"
+    mode: '0644'
+  notify: Restart SSH

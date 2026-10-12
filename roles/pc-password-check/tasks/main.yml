@@ -4,4 +4,17 @@
 # Description : Vérification de la conformité des mots de passe.
 # ---
 ---
+- name: Installer le paquet libpam-pwquality
+  ansible.builtin.apt:
+    name: libpam-pwquality
+    state: present
+    update_cache: true
 
+- name: Déployer la configuration pwquality
+  ansible.builtin.copy:
+    src: pwquality.conf
+    dest: /etc/security/pwquality.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
